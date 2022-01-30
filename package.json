@@ -1,0 +1,26 @@
+{
+  "dependencies": {
+    "dotenv": "^14.3.2",
+    "express": "^4.17.2",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.15.0"
+  },
+  "name": "orm-shipping",
+  "description": "",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maddi124/E-Shopping.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maddi124/E-Shopping/issues"
+  },
+  "homepage": "https://github.com/maddi124/E-Shopping#readme"
+}
