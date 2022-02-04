@@ -33,14 +33,14 @@ router.get('/:id', (req, res) => {
     where:{
       id:req.params.id
     },
-    attributes: ['id', 'product_name', 'price', 'stock', 'category_id'],
+    //attributes: ['id', 'product_name', 'price', 'stock', 'category_id'],
     include:[{
       model:Category,
-      attributes:['category_name']
+      attributes:['id','category_name']
     },
     {
       model:Tag,
-      attributes:['tag_name']
+      attributes:['id','tag_name']
       
     }]
   }).then(productData => res.json(productData))
@@ -60,18 +60,17 @@ router.post('/', (req, res) => {
       tagIds: [1, 2, 3, 4]
     }
   */
-  Product.create(
-  req.body
-    // product_name:req.body.product_name,
-    // price:req.body.price,
-    // stock:req.body.stock,
-    //  category_name:req.body.category_name,
-    // tagIds:req.body.tag_id
-  )
+  Product.create({
+    //req.body
+    product_name:req.body.product_name,
+    price:req.body.price,
+    stock:req.body.stock,
+    tagIds:[req.body.tag_id]
+  })
     .then((product) => {
       // if there's product tags, we need to create pairings to bulk create in the ProductTag model
-      if (product.length) {
-        const productTagIdArr = product.map((tag_id) => {
+      if (req.body.tagIds.length) {
+        const productTagIdArr = req.body.tagIds.map((tag_id) => {
           return {
             product_id: product.id,
             tag_id,
@@ -92,15 +91,16 @@ router.post('/', (req, res) => {
 // update product
 router.put('/:id', (req, res) => {
   // update product data
-  Product.update(req.body, {
+  Product.update(req.body,{
     where: {
-      id: req.params.id,
+      id: req.params.id
     },
-  })
-    .then((product) => {
+}).then((product) => {
       // find all associated tags from ProductTag
-      return ProductTag.findAll({ where: { product_id: req.params.id } });
-    })
+      return ProductTag.findAll({where: {product_id: req.params.id }});
+       // if no product tags, just respond
+      
+   })
     .then((productTags) => {
       // get list of current tag_ids
       const productTagIds = productTags.map(({ tag_id }) => tag_id);
@@ -125,7 +125,7 @@ router.put('/:id', (req, res) => {
       ]);
     }).then((updatedProductTags) => res.json(updatedProductTags))
     .catch((err) => {
-      // console.log(err);
+       console.log(err);
       res.status(400).json(err);
     });
 });
