@@ -1,10 +1,12 @@
 # E-commerce Back End Starter Code
 
 # Description
-For this week challenge, We were given a Starter code and build the back end for an ecommerce site 
+For this week challenge, We were given a Starter code with a working Express.js API. The tasks was to configure it to sequelize to interact with a MySQL database. The dotenv was to store sensitive data such as MySQL username, password and databases name. Insomina was used to test the GET POST PUT and DELETE routes of all categories, Products and Tags 
+![ScreenShot ](./Develop/images/screenshot.png)
 ### Problem that I had....
-
-
+A Problem I had was with PUT routes in the product-routes.js. I was getting an TypeError about not being able to read properties as shown below: 
+![PUT routes error](./Develop/images/error.png)
+  
 # Table of contents
 [Installation](#Installation)<br>
 [Usage](#Usage)<br>
@@ -87,3 +89,10 @@ The walkthrough video must demonstrate GET routes for a single category, a singl
 
 The walkthrough video must demonstrate POST, PUT, and DELETE routes for categories, products, and tags being tested in Insomnia.
 ```
+## mySQL shell and Files
+https://watch.screencastify.com/v/V3BSzNaKnBmVDVUcNIYJ
+
+## GET POST PUT DELETE WALKTHROUGH
+
+https://watch.screencastify.com/v/KvGAsSrdUR8RSehhEy1U
+
